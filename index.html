@@ -6,5 +6,21 @@
 <body>
 	<h1>test run of tro renewal html UI</h1>
 
+
+	<script type="text/javascript">
+		var xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function() {
+    		if (this.readyState == 4 && this.status == 200) {
+       			console.log(xhttp.responseText);
+
+    		}
+		};
+
+		xhttp.open("GET", "https://script.googleusercontent.com/macros/echo?user_content_key=DFPnEbRmjQk53Twqtq0MWoDjkJBo5u9mIE-5Pc0blDa5YmJXGsXJdnxkQnnnpeO9tHAPwuG-f07lL7aczDJVo480532FW1M3m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnObED96ngTDB2TieMCbcfVu7pgZgahlBkFEPy_RnopZe-3V7AbMVt4G7X4LkIu5N9e7EW1lqv5rN&lib=MDCJAyea5HrLdQDPot8upLTZzLCLPtlvf", true);
+		xhttp.send();
+
+	</script>
+
 </body>
 </html>
