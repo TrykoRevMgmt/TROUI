@@ -1,4 +1,4 @@
-//Jordan R vid first vid. create json from SS data.
+//Jordan R vid first vid. create json from SS data 1. 
 
 var ss = SpreadsheetApp.getActiveSpreadsheet();
 var sheet = ss.getSheetByName('Sheet1');
