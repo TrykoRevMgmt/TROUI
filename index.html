@@ -1,14 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 	<title>TRO Renewals</title>
+
 </head>
 <body>
-	<h1>test run of tro renewal html UI</h1>
+	<nav class="navbar navbar-inverse">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Bootstrap CheatSheet</a>
+        </div>
 
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Link</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Separated link</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
-	
-
+    <div class="container">
+      <table class="table table-striped table-bordered table-hover table-condensed">
+        <tr id="tableHeader">
+        </tr>
+        <tr class = "">
+          <td>Jill</td>
+          <td>Smith</td>
+          <td>50</td>
+        </tr>
+        <tr>
+          <td>Eve</td>
+          <td>Jackson</td>
+          <td>24</td>
+        </tr>
+        <tr class="">
+          <td>John</td>
+          <td>Doe</td>
+          <td>34</td>
+        </tr>
+        <tr>
+          <td>Stephanie</td>
+          <td>Landon</td>
+          <td>47</td>
+        </tr>
+        <tr>
+          <td>Mike</td>
+          <td>Johnson</td>
+          <td>19</td>
+        </tr>
+      </table>
+    </div>
 
 	<script type="text/javascript">
 		var xhttp = new XMLHttpRequest();
@@ -16,9 +84,20 @@
 		xhttp.onreadystatechange = function() {
     		if (this.readyState == 4 && this.status == 200) {
        			var response = JSON.parse(xhttp.responseText);
+       			var dataArr = Object.values(response);
+       			var dataHeader = Object.keys(dataArr[1]);
 
-       			console.log(response);
+       			var header = '';
+       			var data = '';
+       			for (var i = 0; i < dataHeader.length; i++) {
+       				header += '<th>' + dataHeader[i] + '</th>';
+       				for (var ii = 0; ii < dataArr.length; ii++) {
+       					data += '' +dataArr[ii][dataHeader[i]] + '';
+       				}
+       			}
 
+       			document.getElementById('tableHeader').innerHTML = header;
+       			console.log(data);
     		}
 		};
 
