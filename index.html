@@ -9,6 +9,46 @@
 
 	<title>TRO Renewals</title>
 
+	<style type="text/css">
+		body {
+    		font-family: "Lato", sans-serif;
+		}
+
+	.sidenav {
+    	height: 100%;
+	    width: 160px;
+	    position: fixed;
+	    z-index: 1;
+	    left: 0;
+	    background-color: #111;
+	    overflow-x: hidden;
+	    padding-top: 20px;
+	}
+
+	.sidenav a {
+	    padding: 6px 8px 6px 16px;
+	    text-decoration: none;
+	    font-size: 25px;
+	    color: #818181;
+	    display: block;
+	}
+
+	.sidenav a:hover {
+	    color: #f1f1f1;
+	}
+
+	.main {
+	    margin-left: 160px; /* Same as the width of the sidenav */
+	    font-size: 28px; /* Increased text to enable scrolling */
+	    padding: 0px 10px;
+	}
+
+	@media screen and (max-height: 450px) {
+    	.sidenav {padding-top: 15px;}
+    	.sidenav a {font-size: 18px;}
+	}	
+	</style>
+
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -46,20 +86,37 @@
       </div><!-- /.container-fluid -->
     </nav>
 
-    <div class="container">
-    	<input type="date" id="bDate" name="bDate">
-    	<input type="date" id="eDate" name="eDate">
-    </div>
+    <div class="sidenav">
+  		<a href="#about">About</a>
+  		<a href="#services">Services</a>
+  		<a href="#clients">Clients</a>
+  		<a href="#contact">Contact</a>
+	</div>
 
-    <hr>
+	<div class="main">
+	    <div class="container">
+	    	<div class="row">
+	    		<div class="col-md-6">
+	    			<input type="text" name="">
+	    			<input type="text" name="">
+	    		</div>
+	    		<div class="col-md-5">
+	    			<input type="date" id="bDate" name="bDate">
+	    			<input type="date" id="eDate" name="eDate">
+	    		</div>
+	    	</div>
+	    </div>
 
-    <div class="container">
-      <table class="table table-striped table-bordered table-hover table-condensed">
-        <thead>
-        <tr id="tableHeader"></tr>	
-        </thead>
-        <tbody id="tableBody"></tbody>
-      </table>
+	    <hr>
+
+	    <div class="container">
+	      <table class="table table-striped table-bordered table-hover table-condensed">
+	        <thead>
+	        <tr id="tableHeader"></tr>	
+	        </thead>
+	        <tbody id="tableBody"></tbody>
+	      </table>
+	    </div>
     </div>
 
 	<script type="text/javascript">
@@ -68,13 +125,23 @@
 		document.getElementById("bDate").addEventListener("input", eLstnr);
 		document.getElementById("eDate").addEventListener("input", eLstnr);
 
-		xhttp.onreadystatechange = function() {
-    		if (this.readyState == 4 && this.status == 200) {
+		function eLstnr(){
+			var bDate = new Date(document.getElementById("bDate").value);
+				bDate.setHours(24);
+				bDate.setMinutes(0);
+				bDate.setSeconds(0);
+			var eDate = new Date(document.getElementById("eDate").value);
+				eDate.setHours(24);
+				eDate.setMinutes(0);
+				eDate.setSeconds(0);
+
+			//xhttp.onreadystatechange = function() {
+    		//if (this.readyState == 4 && this.status == 200) {
        			var response = JSON.parse(xhttp.responseText);
        			var dataArr = Object.values(response);
-       			console.log('dataArr:', dataArr);
+       			//console.log('dataArr:', dataArr);
        			var dataHeader = Object.keys(dataArr[1]);
-       			console.log('dataHeader', dataHeader);
+       			//console.log('dataHeader', dataHeader);
 
        			var header = '';
        			var records = '';
@@ -92,21 +159,21 @@
        			}
 				document.getElementById('tableHeader').innerHTML = header;
 
+				//populate data in table
 				for (var i = 0; i < dataArr.length; i++) {
 					var data = '';
-					for (var ii = 0; ii < dataHeader.length; ii++) {
-						data += '<td>' + dataArr[i][dataHeader[ii]] + '</td>';	
-					}	
+					moveIn = new Date(dataArr[i]["Move-In"]);moveIn.setHours(0);moveIn.setMinutes(0);moveIn.setSeconds(0);
+					if (moveIn >= bDate && moveIn <= eDate) {
+						console.log(bDate,eDate);
+						console.log(moveIn,"yes");
+						for (var ii = 0; ii < dataHeader.length; ii++) {
+							data += '<td>' + dataArr[i][dataHeader[ii]] + '</td>';	
+						}	
+					}
 					document.getElementById('record'+i).innerHTML = data;
 				}
-    		}
-		};
-
-		function eLstnr(){
-			var bDate = document.getElementById("bDate").value;
-			var eDate = document.getElementById("eDate").value;
-			console.log(bDate);
-			console.log('test2');
+    		//}
+		    //}
 		}
 
 		xhttp.open("GET", "https://script.google.com/macros/s/AKfycbzSFDue3ULUpql5J8MAJyagYB-hlMDRUtASM4CN9tPkwA5UnTui/exec", true);
