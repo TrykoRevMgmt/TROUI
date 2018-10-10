@@ -14,6 +14,7 @@
     .table th {
       text-align: center;
     }
+    input {text-align: right;}
   </style>
 
   <body class="w3-border-left w3-border-right">
@@ -65,8 +66,8 @@
             <br>
             <button type="submit" class="btn btn-default">Submit</button>
           </div>    
-          <div class="col-md-7">
-            <table class="table table-striped table-bordered table-hover table-condensed" style="text-align: center; margin-right: 10px;margin-top: 25px; float: left;">
+          <div class="col-md-5" style= "float: right; margin-right: 150px">
+            <table class="table table-striped table-bordered table-hover table-condensed w-25 table-sm" style="text-align: center; margin-top: 25px; float: right; ">
               <thead>
                 <tr>
                     <th>Bucket</th>
@@ -75,11 +76,58 @@
                     <th>Max</th>
                   </tr>
                 </thead>
-              <tbody>
+              <tbody class="">
                 <tr>
                   <td>
-                    <input type="text" name=""> - 
-                    <input type="text" name="">
+                    <input id="highRange0" type="number" min="0" max="99" value="0" size="4" >% - 
+                    <input id="lowRange0" type="number" min="0" max="99" value="2" size="4" >%
+                  </td>
+                  <td>
+                    <input id="target0" type="number" min="0" max="99" value="50" size="4">%
+                  </td>
+                  <td>
+                    <input id="min0" type="number" min="0" max="99" value="2" size="4">%
+                  </td>
+                  <td>
+                    <input id="max0" type="number" min="0" max="99" value="3" size="4">%
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input id="highRange1" type="number" min="0" max="99" value="3" size="4" %>% - 
+                    <input id="lowRange1" type="number" min="0" max="99" value="5" size="4" %>%
+                  </td>
+                  <td>
+                    <input id="target1" type="number" min="0" max="99" value="75" size="4">%
+                  </td>
+                  <td>
+                    <input id="min1" type="number" min="0" max="99" value="4" size="4">%
+                  </td>
+                  <td>
+                    <input id="max1" type="number" min="0" max="99" value="10" size="4">%
+                  </td>
+                </tr>          
+                <tr>
+                  <td>
+                    <input id="highRange2" type="number" min="0" max="99" value="6" size="4" %>% - 
+                    <input id="lowRange2" type="number" min="0" max="99" value="100" size="4" %>%
+                  </td>
+                  <td>
+                    <input id="target2" type="number" min="0" max="99" value="100" size="4">%
+                  </td>
+                  <td>
+                    <input id="min2" type="number" min="0" max="99" value="5" size="4">%
+                  </td>
+                  <td>
+                    <input id="max2" type="number" min="0" max="99" value="10" size="4">%
+                  </td>
+                </tr>                    
+              </tbody>
+              <tbody id = tbody2 class="hide">
+                <tr>
+                  <td>
+                    <input id="highRange1" type="text" name="" value="12" size="4" %>% - 
+                    <input type="text" name="" value="" size="4">%
                   </td>
                   <td>
                     <input type="text" name="">
@@ -93,8 +141,8 @@
                 </tr>
                 <tr>
                   <td>
-                     <input type="text" name=""> - 
-                    <input type="text" name="">
+                    <input id="highRange2" type="text" name="" value="12" size="4" >% - 
+                    <input type="text" name="" value="" size="4">
                   </td>
                   <td>
                      <input type="text" name="">
@@ -128,19 +176,17 @@
       </div>
       <hr>
        <div class="container">
-        
+          <table class="table table-striped table-bordered table-hover table-condensed">
+            <thead id="tableHeader">
+            </thead>
+            <tbody id="tableBody"> 
+            </tbody>
+          </table>
        </div> 
     </div>
 
-      <div class="container">
-        <table class="table table-striped table-bordered table-hover table-condensed">
-          <thead>
-            <tr id="tableHeader"></tr>  
-          </thead>
-          <tbody id="tableBody"></tbody>
-        </table>
-      </div>
-    </div>
-      <script type="text/javascript" src="script.js"></script>
+    
+
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
